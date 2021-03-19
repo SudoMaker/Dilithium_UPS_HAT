@@ -24,11 +24,14 @@ Tested ones:
 Support for MCU boards with a 40Pin Raspberry Pi compatible header (STM32/PIC32/ESP32/etc) is coming soon.
 
 ### Thermal notices
-### Raspberry Pi 4
+#### Raspberry Pi 4
 Raspberry Pi 4's CPU is very hot even in idle. If Dilithium UPS HAT is directly placed above the CPU, it will be "roasted" by the hot CPU. You may buy the Pi Zero to A+ adapter (which has a lot of holes and supports installing a fan) to improve this condition.
 
-### High current usages
+#### High output current
 Sustained 4A output should only be used with proper active cooling. Otherwise it may shorten the board's lifespan or destroy the board.
+
+#### Fast battery charge
+If you are charging the battery with a high current (2A or more), and the powered SBC is running an intensive task, the board will still be overheat. If you choose not to use active cooling, which is fine as long as output current doesn't exceed 3A, charging current will be automatically decreased when in a overheat condition. 
 
 ## Software
 
