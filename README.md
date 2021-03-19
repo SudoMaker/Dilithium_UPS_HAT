@@ -1,20 +1,20 @@
 # Dilithium UPS HAT
 
-English | 中文 //TODO
+English | 中文 // TODO
 
 ## Disclaimer
 This product is a DIY product. Users should have certain hands-on skills, general computer knowledge, basic electrical knowledge, general safety knowledge, and a very strong sense of safety. Neither the author nor the copyright holder of this product shall be held liable for any adverse consequences resulting from the use of this product.
 
 ## Where to buy
-[Tindie](https://www.tindie.com/products/sudomaker/dilithium-mini-ups-hat/) (for worldwide buyers)
+[Tindie](https://www.tindie.com/products/sudomaker/dilithium-mini-ups-hat/) (Worldwide)
 
-[Taobao](https://item.taobao.com/item.htm?id=636945235597) (for China mainland buyers)
+[Taobao](https://item.taobao.com/item.htm?id=636945235597) (China mainland)
 
 ## Hardware
 ### Supported platforms
 Almost every Linux SBC with a 40Pin Raspberry Pi compatible header is supported.
 
-Tested ones:
+Tested working devices:
 - Raspberry Pi Zero
 - Raspberry Pi 3A+
 - Raspberry Pi 4B
@@ -31,9 +31,17 @@ Raspberry Pi 4's CPU is very hot even in idle. If Dilithium UPS HAT is directly 
 Sustained 4A output should only be used with proper active cooling. Otherwise it may shorten the board's lifespan or destroy the board.
 
 #### Fast battery charge
-If you are charging the battery with a high current (2A or more), and the powered SBC is running an intensive task, the board will still be overheat. If you choose not to use active cooling, which is fine as long as output current doesn't exceed 3A, charging current will be automatically decreased when in a overheat condition. 
+If you are charging the battery with a high current (2A or more), and the powered SBC is running an intensive task, the board will still get overheat. If you choose not to use active cooling, which is fine as long as output current doesn't exceed 3A, charging current will be automatically decreased when during an overheat condition.
 
 ## Software
+Currently closed source. We may choose to make them open sourced one day.
+
+These programs won't collect user data or connect to Internet.
+
+Changes to software design could be made without notice.
+
+### Download
+See [releases](https://github.com/SudoMaker/Dilithium_UPS_HAT/releases).
 
 ### Installation
 #### Debian-ish (Debian/Ubuntu/Mate/Armbian/etc)
@@ -62,7 +70,7 @@ dpkg -i dilithium-tools_<version>_armhf_raspbian.deb
 #### Other distros / hack by yourself
 Unpack the .deb file and copy the files to proper destinations.
 
-or if you prefer not to use a set of closed source tools, you can:
+Or if you prefer not to use a set of closed source tools provided by us, you can:
 - Use TI's bqStudio + EV2400 combo to design your battery profile
 - Write device trees for these devices:
 
@@ -75,7 +83,9 @@ or if you prefer not to use a set of closed source tools, you can:
 ### Language support
 Currently this software supports only English and Simplified Chinese (UTF8).
 
-Set appropriate `LANG` & `LC_*` environment variables to select different languages.
+Set appropriate `LANG` environment variables to select different languages. e.g. `export LANG=zh_CN.UTF8`
+
+If you're using Ubuntu, you may need to install appropriate language packs. e.g. `apt install language-pack-zh-hans`
 
 ### Usages
 #### Get battery stats
@@ -83,6 +93,9 @@ Set appropriate `LANG` & `LC_*` environment variables to select different langua
 The battery icon is in the tray area just like you're using a Linux laptop.
 
 You can view detailed battery stats, including history curves, in system settings. Support in different desktop environments may vary.
+
+![Screenshot_20210108_144546](https://user-images.githubusercontent.com/34613827/111814644-acb82580-8915-11eb-80f4-2dbebb57def4.png)
+
 
 ##### From command line
 Simply run `upower -i /org/freedesktop/UPower/devices/battery_bq27510g3_0`
@@ -147,6 +160,9 @@ POWER_SUPPLY_MANUFACTURER=Texas Instruments
 ##### Calibration wizard
 A TUI wizard to help you set and calibrate the basic parameters of the battery.
 
+![image](https://user-images.githubusercontent.com/34613827/111815557-c7d76500-8916-11eb-8bf6-95706e34d23a.png)
+
+
 Installed path: `/usr/bin/Dilithium_Calibration_Wizard`
 
 If you use ssh on Windows, please use a `xterm`-compatible terminal.
@@ -158,6 +174,9 @@ Depending on the capacity of your optional battery, this calibration process may
 ##### Profile tool
 A command line tool to help you import & export calibrated battery parameters.
 
+![Screenshot_20210320_005955](https://user-images.githubusercontent.com/34613827/111816267-9743fb00-8917-11eb-8fea-0166a131295c.png)
+
+
 Installed path: `/usr/bin/Dilithium_Profile_Tool`
 
 Examples:
@@ -167,3 +186,10 @@ Dilithium_Profile_Tool --import --file LGChem_INR18650M26_2600mAh_x3.json
 ```
 
 See its `--help` for more usages.
+
+You're welcomed to share your battery configurations here by creating pull requests.
+
+## License
+This document and all battery configurations use the MIT license.
+
+Software & hardware design (C) 2021 SudoMaker, All rights reserved.
