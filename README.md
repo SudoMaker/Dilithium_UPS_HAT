@@ -59,6 +59,19 @@ apt install upower kmod
 dpkg -i dilithium-tools_<version>_armhf_raspbian.deb
 ```
 
+#### Other distros / hack by yourself
+Unpack the .deb file and copy the files to proper destinations.
+
+or if you prefer not to use a set of closed source tools, you can:
+- Use TI's bqStudio + EV2400 combo to design your battery profile
+- Write device trees for these devices:
+
+|Device|I2C addr|
+|---|---|
+|bq27510g3|0x55|
+|ds1340|0x68|
+|bq25895|0x6a|
+
 ### Language support
 Currently this software supports only English and Simplified Chinese (UTF8).
 
