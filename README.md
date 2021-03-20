@@ -5,13 +5,13 @@ English | 中文 // TODO
 ## Disclaimer
 This product is a DIY product. Users should have certain hands-on skills, general computer knowledge, basic electrical knowledge, general safety knowledge, and a very strong sense of safety. Neither the author nor the copyright holder of this product shall be held liable for any adverse consequences resulting from the use of this product.
 
-## Where to buy
+## Where to Buy
 [Tindie](https://www.tindie.com/products/sudomaker/dilithium-mini-ups-hat/) (Worldwide)
 
 [Taobao](https://item.taobao.com/item.htm?id=636945235597) (China mainland)
 
 ## Hardware
-### Supported platforms
+### Supported Platforms
 Almost every Linux SBC with a 40Pin Raspberry Pi compatible header is supported.
 
 Tested working devices:
@@ -25,30 +25,32 @@ Support for MCU boards with a 40Pin Raspberry Pi compatible header (STM32/PIC32/
 
 ### Installation
 - Install Dilithium UPS HAT onto your device, without battery
-- Plug in power cable, see if the orange LED turns on, and blue LED turns on / blinking
-- Turn on the power switch, see if the green LED turns on, and your device powers up
-- Install software packages mentioned below
+- Plug in power cable
+  + the orange LED should turn on
+  + the blue LED should turn on or start blinking
+- Turn on the power switch. The green LED should turn on
+- Install software mentioned below
 - Plug in battery
-- Start a new calibration or import a already calibrated profile
+- Start a new calibration or import a pre-calibrated profile
 - That's all! Enjoy!
 
-### Thermal notices
+### Thermal Notices
 #### Raspberry Pi 4
 Raspberry Pi 4's CPU is very hot even in idle. If Dilithium UPS HAT is directly placed above the CPU, it will be "roasted" by the hot CPU. You may buy the Pi Zero to A+ adapter (which has a lot of holes and supports installing a fan) to improve this condition.
 
-#### High output current
+#### High Output Current
 Sustained 4A output should only be used with proper active cooling. Otherwise it may shorten the board's lifespan or destroy the board.
 
-#### Fast battery charge
-If you are charging the battery with a high current (2A or more), and the powered SBC is running an intensive task, the board will still get overheat. If you choose not to use active cooling, which is fine as long as output current doesn't exceed 3A, charging current will be automatically decreased when during an overheat condition.
+#### Fast Battery Charge
+If you are charging the battery with a high current (2A or more), and the powered SBC is running an intensive task, the board may overheat. If you choose not to use active cooling, which is fine as long as output current doesn't exceed 3A, charging current will be automatically decreased when during an overheat condition.
 
-### Missing battery and the blue LED
+### Missing Battery and the Blue LED
 In normal conditions, the blue LED will be blinking if no battery is connected. However, since it's based on a simple voltage comparator (we choose not to use a MCU, which is a big overhead and will introduce extra costs), if the output current is high, it may stop blinking. This won't affect normal operations.
 
 ## Software
 Currently closed source. We may choose to make them open sourced one day.
 
-These programs won't collect user data or connect to Internet.
+These programs won't collect user data or connect to the internet.
 
 Changes to software design could be made without notice.
 
@@ -92,27 +94,27 @@ Or if you prefer not to use a set of closed source tools provided by us, you can
 |ds1340|0x68|
 |bq25895|0x6a|
 
-### Language support
+### Language Support
 Currently this software supports only English and Simplified Chinese (UTF8).
 
 Set appropriate `LANG` environment variables to select different languages. e.g. `export LANG=zh_CN.UTF8`
 
 If you're using Ubuntu, you may need to install appropriate language packs. e.g. `apt install language-pack-zh-hans`
 
-### Usages
-#### Get battery stats
+### Usage
+#### Get Battery Stats
 ##### From GUI
-The battery icon is in the tray area just like you're using a Linux laptop.
+The battery icon is in the tray area as though you're using a Linux laptop.
 
 You can view detailed battery stats, including history curves, in system settings. Support in different desktop environments may vary.
 
 ![Screenshot_20210108_144546](https://user-images.githubusercontent.com/34613827/111814644-acb82580-8915-11eb-80f4-2dbebb57def4.png)
 
 
-##### From command line
+##### From Command Line
 Simply run `upower -i /org/freedesktop/UPower/devices/battery_bq27510g3_0`
 
-If you're using an kernel older than 4.11, use `bq27510` instead of `bq27510g3`.
+If you're using a kernel older than 4.11, use `bq27510` instead of `bq27510g3`.
 
 Example output:
 ```
@@ -146,10 +148,10 @@ Example output:
     1616157679  7.025   charging
     1616157677  7.029   charging
 ```
-##### From a programming language
+##### From a Programming Language
 Simply read from the files in `/sys/class/power_supply/bq27510g3-0/`. Values are in different files.
 
-If you're using an kernel older than 4.11, use `bq27510` instead of `bq27510g3`.
+If you're using a kernel older than 4.11, use `bq27510` instead of `bq27510g3`.
 
 e.g.:
 ```
@@ -173,8 +175,8 @@ POWER_SUPPLY_HEALTH=Good
 POWER_SUPPLY_MANUFACTURER=Texas Instruments
 ```
 
-#### Maintaince tools
-##### Calibration wizard
+#### Maintenance Tools
+##### Calibration Wizard
 A TUI wizard to help you set and calibrate the basic parameters of the battery.
 
 ![image](https://user-images.githubusercontent.com/34613827/111815557-c7d76500-8916-11eb-8bf6-95706e34d23a.png)
@@ -182,13 +184,13 @@ A TUI wizard to help you set and calibrate the basic parameters of the battery.
 
 Installed path: `/usr/bin/Dilithium_Calibration_Wizard`
 
-If you use ssh on Windows, please use a `xterm`-compatible terminal.
+If you use ssh on Windows, please use an `xterm`-compatible terminal.
 
-Depending on the capacity of your optional battery, this calibration process may take from a few hours to a full day.
+Depending on the capacity of your optional battery, this calibration process can take anywhere from a few hours to a full day.
 
 **Upon completion, you will get accurate battery capacity information. This is useful when using a suspected fake battery. Then you can get accurate power measurement on any supported battery.**
 
-##### Profile tool
+##### Profile Tool
 A command line tool to help you import & export calibrated battery parameters.
 
 ![Screenshot_20210320_005955](https://user-images.githubusercontent.com/34613827/111816267-9743fb00-8917-11eb-8fea-0166a131295c.png)
