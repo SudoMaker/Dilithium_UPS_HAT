@@ -83,7 +83,7 @@ dpkg -i dilithium-tools_<version>_armhf_raspbian.deb
 Unpack the .deb file and copy the files to proper destinations.
 
 Or if you prefer not to use a set of closed source tools provided by us, you can:
-- Use TI's bqStudio + EV2400 combo to design your battery profile
+- Use TI's [bqStudio](https://www.ti.com/tool/BQSTUDIO) + [EV2400](https://www.ti.com/tool/EV2400) combo to design your battery profile
 - Write device trees for these devices:
 
 |Device|I2C addr|
@@ -111,6 +111,8 @@ You can view detailed battery stats, including history curves, in system setting
 
 ##### From command line
 Simply run `upower -i /org/freedesktop/UPower/devices/battery_bq27510g3_0`
+
+If you're using an kernel older than 4.11, use `bq27510` instead of `bq27510g3`.
 
 Example output:
 ```
@@ -144,8 +146,11 @@ Example output:
     1616157679  7.025   charging
     1616157677  7.029   charging
 ```
-##### From a scripting language
+##### From a programming language
 Simply read from the files in `/sys/class/power_supply/bq27510g3-0/`. Values are in different files.
+
+If you're using an kernel older than 4.11, use `bq27510` instead of `bq27510g3`.
+
 e.g.:
 ```
 ➜  ~ cat /sys/class/power_supply/bq27510g3-0/capacity 
