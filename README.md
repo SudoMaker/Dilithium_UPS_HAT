@@ -23,6 +23,15 @@ Tested working devices:
 
 Support for MCU boards with a 40Pin Raspberry Pi compatible header (STM32/PIC32/ESP32/etc) is coming soon.
 
+### Installation
+- Install Dilithium UPS HAT onto your device, without battery
+- Plug in power cable, see if the orange LED turns on, and blue LED turns on / blinking
+- Turn on the power switch, see if the green LED turns on, and your device powers up
+- Install software packages mentioned below
+- Plug in battery
+- Start a new calibration or import a already calibrated profile
+- That's all! Enjoy!
+
 ### Thermal notices
 #### Raspberry Pi 4
 Raspberry Pi 4's CPU is very hot even in idle. If Dilithium UPS HAT is directly placed above the CPU, it will be "roasted" by the hot CPU. You may buy the Pi Zero to A+ adapter (which has a lot of holes and supports installing a fan) to improve this condition.
@@ -32,6 +41,9 @@ Sustained 4A output should only be used with proper active cooling. Otherwise it
 
 #### Fast battery charge
 If you are charging the battery with a high current (2A or more), and the powered SBC is running an intensive task, the board will still get overheat. If you choose not to use active cooling, which is fine as long as output current doesn't exceed 3A, charging current will be automatically decreased when during an overheat condition.
+
+### Missing battery and the blue LED
+In normal conditions, the blue LED will be blinking if no battery is connected. However, since it's based on a simple voltage comparator (we choose not to use a MCU, which is a big overhead and will introduce extra costs), if the output current is high, it may stop blinking. This won't affect normal operations.
 
 ## Software
 Currently closed source. We may choose to make them open sourced one day.
